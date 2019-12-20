@@ -16,7 +16,10 @@
 
 *Note: it also should works with ~/.ssh/config, but in my case it don't work, and I don't have any ideas why*
 
-###### Setting for VPN-connection:
+###### How to add let's encrypt certificate to our vpn-server:
+- just go to "settings" in our pritunl web interface and add `<bastion-ext-ip>.sslip.io` to "let's encrypt domain" field, then reopen your pritunl web interface in browser using `<bastion-ext-ip>.sslip.io` instead of `<bastion-ext-ip>`
+
+###### Settings for VPN-connection:
 bastion_IP = 35.240.97.78
 
 someinternalhost_IP = 10.132.0.4
