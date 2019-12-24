@@ -1,5 +1,18 @@
 # deribinvladimir_infra
-### deribinvladimir Infra repository
+### cloud-testapp - settings and notes
+###### Settings for testapp:
+testapp_IP = 34.89.145.106
+
+testapp_port = 9292
+###### How to create instance using startup.sh:
+- `gcloud compute instances create reddit-app --boot-disk-size=10GB --image-family ubuntu-1604-lts --image-project=ubuntu-os-cloud --machine-type=g1-small --tags puma-server --restart-on-failure --metadata startup-script=startup.sh`
+- `gcloud compute instances create reddit-app --boot-disk-size=10GB --image-family ubuntu-1604-lts --image-project=ubuntu-os-cloud --machine-type=g1-small --tags puma-server --restart-on-failure --metadata startup-script-url=https://storage.googleapis.com/otus-devops-2019-11-vd/startup.sh`
+###### How to create firewall rule using gcloud:
+- `gcloud compute firewall-rules create default-puma-server --allow tcp:9292 --target-tags=puma-server`
+
+*Note: I didn't set all other parameters because in our case their default values are match with desired ones*
+
+### cloud-bastion - settings and notes
 ###### How to connect to second machine using one string:
 - `ssh -A -t <user>@<bastion-ext-ip> ssh <user>@<someinternalhost-ip>`
 ###### How to connect to second machine using something like "ssh someinternalhost":
