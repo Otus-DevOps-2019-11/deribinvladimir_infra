@@ -1,4 +1,9 @@
 # deribinvladimir_infra
+
+### packer-base
+###### How to create instance using our baked image reddit-full:
+- `sudo gcloud compute instances create reddit-app --boot-disk-size=10GB --image-family reddit-full --machine-type=g1-small --tags puma-server --restart-on-failure`
+
 ### cloud-testapp - settings and notes
 ###### Settings for testapp:
 testapp_IP = 34.89.145.106
