@@ -1,8 +1,19 @@
 # deribinvladimir_infra
 
 ### packer-base
+###### What's been done during this homework:
+- ADC set up for GCP on local machine
+- template and scripts created for pre-baked image 'reddit-base' creation with Ruby and Mongo DB installed
+- template from previous step parametrized using more creation options
+- template and scripts created for baked image 'reddit-full' creation with Puma, ready for work instantly after starting instance
 ###### How to create instance using our baked image reddit-full:
 - `sudo gcloud compute instances create reddit-app --boot-disk-size=10GB --image-family reddit-full --machine-type=g1-small --tags puma-server --restart-on-failure`
+###### Additional resources used during this homework:
+- https://github.com/puma/puma/blob/master/docs/systemd.md
+- https://www.shellhacks.com/ru/systemd-service-file-example/
+- https://losst.ru/komanda-echo-v-linux, https://www.nixp.ru/recipes/21.html
+- https://ixnfo.com/kak-ustanovit-midnight-commander-mc-v-ubuntu-18-04.html
+
 
 ### cloud-testapp - settings and notes
 ###### Settings for testapp:
