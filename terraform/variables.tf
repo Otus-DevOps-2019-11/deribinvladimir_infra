@@ -4,11 +4,11 @@ variable project {
 variable region {
   description = "Region"
   # Значение по умолчанию
-  default = "europe-west-1"
+  default = "europe-west1"
 }
 variable zone {
   description = "Zone"
-  default     = "europe-west-1c"
+  default     = "europe-west1-c"
 }
 variable public_key_path {
   # Описание переменной
@@ -19,4 +19,9 @@ variable private_key_path {
 }
 variable disk_image {
   description = "Disk image"
+}
+
+# for LB
+variable "network_name" {
+  default = "lb-http-gcp"
 }

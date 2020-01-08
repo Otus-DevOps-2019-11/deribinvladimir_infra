@@ -33,3 +33,6 @@ sudo systemctl enable puma.service
 
 # Check status
 # sudo systemctl status puma.service
+
+# check status by old way
+ps aux | grep puma
