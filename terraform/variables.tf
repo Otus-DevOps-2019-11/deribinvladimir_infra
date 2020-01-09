@@ -20,8 +20,7 @@ variable private_key_path {
 variable disk_image {
   description = "Disk image"
 }
-
-# for LB
-variable "network_name" {
-  default = "lb-http-gcp"
+variable instance_count {
+  description = "Number of instances"
+  default     = "1"
 }
