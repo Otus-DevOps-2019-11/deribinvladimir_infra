@@ -1,9 +1,9 @@
 variable project {
   description = "Project ID"
 }
+# we can add description and default value, but this is optional
 variable region {
   description = "Region"
-  # Значение по умолчанию
   default = "europe-west1"
 }
 variable zone {
@@ -11,7 +11,6 @@ variable zone {
   default     = "europe-west1-c"
 }
 variable public_key_path {
-  # Описание переменной
   description = "Path to the public key used for ssh access"
 }
 variable private_key_path {
