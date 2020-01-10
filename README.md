@@ -1,5 +1,31 @@
 # deribinvladimir_infra
 
+### terraform-1
+###### What's been done during this homework:
+- terraform installed and initiated
+- main.tf created with ssh-key, firewall rule and provisioners to deploy our reddit-base instance and install puma on it
+- outputs.tf created to see ip-address of our instance
+- variables.tf and terrafor.tfvars created and variables parametrized for our project
+- few pub ssh keys for differents users added to check how it works
+- added usage of private ssh key 
+- checked behavior of terraform if metadata for ssh-key added through gui directly to project
+- lb.tf added with instructions to create load balancer with our instance in it
+- main.tf modified to create two reddit-base instances by copying section "google-compute-instance"
+- main.tf modified to use count instead of copy-paste section "google-compute-instance" for each instance
+- after checking all results all resources deleted by "terraform destroy"
+###### What's going on when we add some resources directly to project through gui bypassing terraform configs update:
+- if we add new ssh-key for new user to metadata of our gcp-project, nothing changes after "terraform apply" because this is global parameter and it's not defined in our terraform configs
+- if we add new ssh-key for new user to metadata of our instance, "terraform apply" will delete it because it not match with our state from terraform configs
+###### Additional resources used during this homework:
+- https://cloud.google.com/load-balancing/docs/, and especially https://cloud.google.com/load-balancing/docs/https/ with scheme - **must read to understand how works load balancing in gcp**
+- https://www.terraform.io/docs/providers/google/r/compute_forwarding_rule.html - **good doc** about resource "google_compute_forwarding_rule" **with good examples of full load balancing description** (I used it in my homework)
+- https://www.terraform.io/docs/providers/google/r/compute_health_check.html - resource "google_compute_health_check" but it don't work in our case for unknown reason
+- https://www.terraform.io/docs/providers/google/r/compute_instance.html - more parameters for resource "google_compute_instance"
+- https://github.com/gruntwork-io/terraform-google-load-balancer - yet another **good description (see main.tf and other files) of load balancer resource** (I used it in my homework)
+- https://coderoad.ru/38645002/%D0%9A%D0%B0%D0%BA-%D0%B4%D0%BE%D0%B1%D0%B0%D0%B2%D0%B8%D1%82%D1%8C-%D0%BA%D0%BB%D1%8E%D1%87-ssh-%D0%BA-%D1%8D%D0%BA%D0%B7%D0%B5%D0%BC%D0%BF%D0%BB%D1%8F%D1%80%D1%83-GCP-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-terraform - how to add a couple of pub ssh-keys to resource
+- https://stackoverflow.com/questions/19622198/what-does-set-e-mean-in-a-bash-script, https://serverfault.com/questions/377092/bash-set-e-and-check-if-a-user-exists-make-script-exit, http://andrew.bogdanovs.com/post/bash_set_e_and_etc.html - some useful info about set parameter (it's for provisioner's scripts)
+- https://github.com/terraform-google-modules, https://github.com/terraform-google-modules/terraform-google-lb-http - external module for terraform to create load balancers; unfortunately it was too hard for my brain and it not support google provider version 3+, only 2.15; https://cloud.google.com/community/tutorials/modular-load-balancing-with-terraform - description with schemes using this external module, can be useful
+
 ### packer-base
 ###### What's been done during this homework:
 - ADC set up for GCP on local machine

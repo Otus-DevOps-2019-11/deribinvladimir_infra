@@ -16,7 +16,7 @@ cd reddit && bundle install
 #create systemd config
 sudo touch /etc/systemd/system/puma.service
 sudo chmod 664 /etc/systemd/system/puma.service
-echo -e "[Unit]\nDescription=Puma HTTP Server\nAfter=network.target\n\n[Service]\nType=simple\nExecStart=/usr/local/bin/puma -d\nRestart=always\n\n[Install]\nWantedBy=multi-user.target\n" | sudo tee /etc/systemd/system/puma.service
+echo -e "[Unit]\nDescription=Puma HTTP Server\nAfter=network.target\n\n[Service]\nType=simple\nUser=appuser\nWorkingDirectory=/home/appuser/reddit\nExecStart=/usr/local/bin/puma -C /var/lib/gems/2.3.0/gems/puma-3.10.0/lib/puma.rb\n# ExecStart=/usr/local/bin/puma -d\nRestart=always\n\n[Install]\nWantedBy=multi-user.target\n" | sudo tee /etc/systemd/system/puma.service
 
 # Reread configs
 sudo systemctl daemon-reload
