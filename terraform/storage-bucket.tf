@@ -13,10 +13,12 @@ provider "google" {
 }
 
 module "storage-bucket" {
-  source  = "SweetOps/storage-bucket/google"
-  version = "0.3.0"
-  name = "storage-bucket-olololo12345"
+  source   = "SweetOps/storage-bucket/google"
+  version  = "0.3.0"
+  name     = "storage-bucket-olololo12345"
   location = var.region
+  # allow to delete by terraform
+  force_destroy = true
 }
 
 output storage-bucket_url {
