@@ -18,13 +18,13 @@
         {
             "type": "googlecompute",
             "project_id": "{{ user `project_id` }}",
-            "image_name": "reddit-base-{{timestamp}}",
-            "image_family": "reddit-base",
+            "image_name": "reddit-db-base-{{timestamp}}",
+            "image_family": "reddit-db-base",
             "source_image_family": "{{ user `source_image_family` }}",
             "zone": "{{ user `zone` }}",
             "disk_size": "{{ user `disk_size` }}",
             "zone": "{{ user `zone` }}",
-            "image_description": "{{ user `image_description` }}",
+            "image_description": "Image for reddit with db",
             "zone": "{{ user `zone` }}",
             "ssh_username": "{{ user `ssh_username` }}",
             "machine_type": "{{ user `machine_type` }}",
@@ -33,11 +33,6 @@
         }
     ],
     "provisioners": [
-	{
-	    "type": "shell",
-	    "script": "scripts/install_ruby.sh",
-	    "execute_command": "sudo {{.Path}}"
-	},
 	{
 	    "type": "shell",
 	    "script": "scripts/install_mongodb.sh",

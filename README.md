@@ -1,5 +1,31 @@
 # deribinvladimir_infra
 
+### terraform-2
+###### What's been done during this homework:
+- firewall resource created and updated by inmport
+- network_interface defined 
+- base image separated and created by packer to two different images: one with Mongo DB and another one for Ruby
+- terraform configuration also separated to app, db and vpc layers and checked to work
+- terraform configurations converted to modules app, db and vpc, parametrized and checked to work
+- updated and checked firewall rule to limit connections only from our provider's address
+- created two environments, stage and prod, with the same modules usage
+- added external storage-bucket module to create buckets
+- bucket created to store terraform state and state moved on it
+- provisioners added to deploy full workable environment
+- provisioner for db instance modified to update mongo db config to allow connections from other instances
+- setting added to update puma config with ip-address of instance with mongo db
+- variable added and module updated to add possibility to make choice between full deploy with puma or only base deploy from packer images 
+- after checking all results all resources deleted by "terraform destroy"
+###### How works feature to choose between full deploy with provisioners and base deploy:
+- added variable "provision_enabled" with boolean type to choice what we want
+- added resource "null_resource" with logical "count" construction to make additional operations for "app" resource if value of "provision_enabled" is yes: "count = var.provision_enabled ? 1 : 0"
+###### Additional resources used during this homework:
+- https://losst.ru/komanda-sed-linux - to modify mongo db config (but other way is --bind_ip 0.0.0.0 + ss -nlp | grep port_number to check is mongo listening or not)
+- https://www.terraform.io/docs/configuration/expressions.html, https://www.terraform.io/docs/modules/composition.html, 
+https://www.terraform.io/docs/provisioners/remote-exec.html, https://www.terraform.io/docs/providers/null/resource.html - useful information about using different resources in our task
+- https://registry.terraform.io/modules/SweetOps/storage-bucket/google/0.3.0 and https://github.com/SweetOps/terraform-google-storage-bucket - storage-bucket module
+- https://medium.com/@gmusumeci/getting-started-with-terraform-and-google-cloud-platform-gcp-deploying-vms-in-a-private-only-f8b5ce7858d8 - some interesting examples how to make terraform config with instances, network, firewall rules, lb, autoscaling etc
+
 ### terraform-1
 ###### What's been done during this homework:
 - terraform installed and initiated
