@@ -5,4 +5,4 @@ app:
 db:
   hosts:
     dbserver:
-      ansible_host: 35.246.225.135
+      ansible_host: 34.89.200.4
