@@ -1,8 +1,36 @@
 # deribinvladimir_infra
 
+### ansible-1
+###### What's been done during this homework:
+- ansible and dependent and useful tools and programs were installed (python, pip, etc)
+- stage environment deployed by terraform to work with ansible
+- inventory file for ansible created and checked to work with our instances directrly
+- ansible.cfg created to optimize our work
+- groups of hosts created and checked how it works
+- inventory.yml created
+- checked how work shell, command, systemd and service commands
+- some kind of provisioning tested by git module and compared with command usage
+- small playbook "clone" created and tested
+- created and tested different ways of dynamic inventory usage
+###### How to make successful run of "ansible all -m ping" with dynamic inventory
+I found two ways:
+- first way is to create small program which will ask inventory info by some way (through api, sdk, or just get terraform output) and then send it to stdout in json format and add it to ansible.cfg, for example: inventory = ./dynamicjson.sh
+- second way is to use modern plugin to get info from gcp account - [gcp_compute](https://docs.ansible.com/ansible/latest/plugins/inventory/gcp_compute.html), prepare appropriate yml (for example, see my [dynamicinv.gcp.yml](https://github.com/Otus-DevOps-2019-11/deribinvladimir_infra/blob/ansible-1/ansible/dynamicinv.gcp.yml) and add it to ansible.cfg: inventory = ./dynamicinv.gcp.yml
+###### Difference between static and dynamic inventory json 
+Static inventory json is just a list of hosts and ip-addresses, where dynamic inventory json creates dynamically during job and can has more information about hosts. Also dynamically generated json can't be used just as static json for ansible because it has a little bit different format.
+###### What's goes on when we delete "~/reddit" folder after first run of "clone" playbook
+When we delete "~/reddit" folder and run "clone" playbook again, we get "changed=1" message, because our playbook change one element (folder "reddit") during its run.
+###### Additional resources used during this homework:
+- https://codebeautify.org/yaml-to-json-xml-csv - to convert static inventory.yml to inventory.json
+- https://habr.com/ru/company/ruvds/blog/327754/ - manual about awk - to get actual info about hosts from terraform output
+- https://www.jeffgeerling.com/blog/creating-custom-dynamic-inventories-ansible - good example about dynamic inventory using Python
+- [info about dynamic inventory in ansible](https://medium.com/@Nklya/%D0%B4%D0%B8%D0%BD%D0%B0%D0%BC%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5-%D0%B8%D0%BD%D0%B2%D0%B5%D0%BD%D1%82%D0%BE%D1%80%D0%B8-%D0%B2-ansible-9ee880d540d6)
+- https://medium.com/@Temikus/ansible-gcp-dynamic-inventory-2-0-7f3531b28434 and https://docs.ansible.com/ansible/latest/plugins/inventory/gcp_compute.html - how to use gcp plugin to get inventory info from our gcp account (for example, look at my [dynamicinv.gcp.yml](https://github.com/Otus-DevOps-2019-11/deribinvladimir_infra/blob/ansible-1/ansible/dynamicinv.gcp.yml) - you can get inventory using it: "ansible all -i dynamicinv.gcp.ym -m ping" and it will work)
+
+
 ### terraform-2
 ###### What's been done during this homework:
-- firewall resource created and updated by inmport
+- firewall resource created and updated by import
 - network_interface defined 
 - base image separated and created by packer to two different images: one with Mongo DB and another one for Ruby
 - terraform configuration also separated to app, db and vpc layers and checked to work
