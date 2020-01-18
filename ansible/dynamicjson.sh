@@ -7,10 +7,10 @@ if [ "$1" == "--list" ] ; then
 cat<<EOF
 {
     "app": {
-        "hosts": [$app_ip],
+        "hosts": ["$app_ip"],
     },
     "db": {
-        "hosts": [$db_ip],
+        "hosts": ["$db_ip"],
     }
 }
 EOF
