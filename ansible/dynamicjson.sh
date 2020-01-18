@@ -9,7 +9,9 @@ cat<<EOF
     "app": {
         "hosts": [$app_ip],
     },
-    "db": [$db_ip],
+    "db": {
+        "hosts": [$db_ip],
+    }
 }
 EOF
 elif [ "$1" == "--host" ]; then
