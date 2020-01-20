@@ -1,0 +1,22 @@
+{
+    "app": {
+		"hosts": {
+			"appserver": {
+				"ansible_host": "34.89.145.106"
+			}
+		}
+	},
+	"db": {
+		"hosts": {
+			"dbserver": {
+				"ansible_host": "34.89.200.4"
+			}
+		}
+	},
+    "all": {
+        "vars": {
+            "ansible_ssh_user": "appuser",
+            "ansible_ssh_private_key_file": "~/.ssh/appuser"
+        }
+    }
+}
