@@ -31,7 +31,7 @@ module "app" {
   app_disk_image     = var.app_disk_image
   reddit_internal_ip = module.db.db_internal_ip
   #  db_internal_ip    = "10.156.15.193"
-  provision_enabled = true
+  provision_enabled = false
 }
 
 module "vpc" {

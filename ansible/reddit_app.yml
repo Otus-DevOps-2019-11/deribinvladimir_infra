@@ -1,0 +1,17 @@
+---
+- name: Configure hosts & deploy application
+  hosts: all
+  vars:
+    mongo_bind_ip: 0.0.0.0  # <-- variable for our mongod template
+  tasks:
+    - name: Change mongo config file
+      become: true  # <-- run as root
+      template:
+        src: templates/mongod.conf.j2
+        dest: /etc/mongod.conf
+        mode: 0644
+      tags: db-tag
+  handlers:
+  - name: restart mongod
+    become: true
+    service: name=mongod state=restarted
