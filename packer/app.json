@@ -5,9 +5,7 @@
 	    "source_image_family": null,
 	    "zone": null,
 	    "ssh_username": null,
-	    "machine_type": null,
 	    "disk_size": null,
-	    "machine_type": null,
 	    "image_description": null,
 	    "machine_type": null,
 	    "network": null,
@@ -21,9 +19,7 @@
             "image_name": "reddit-app-base-{{timestamp}}",
             "image_family": "reddit-app-base",
             "source_image_family": "{{ user `source_image_family` }}",
-            "zone": "{{ user `zone` }}",
             "disk_size": "{{ user `disk_size` }}",
-            "zone": "{{ user `zone` }}",
             "image_description": "Image for reddit with ruby",
             "zone": "{{ user `zone` }}",
             "ssh_username": "{{ user `ssh_username` }}",
@@ -34,14 +30,8 @@
     ],
     "provisioners": [
 	{
-	    "type": "shell",
-	    "script": "scripts/install_ruby.sh",
-	    "execute_command": "sudo {{.Path}}"
-	},
-	{
-	    "type": "shell",
-	    "script": "files/deploy_mc.sh",
-	    "execute_command": "sudo {{.Path}}"
+	    "type": "ansible",
+	    "playbook_file": "ansible/packer_app.yml"
 	}
     ]
 }

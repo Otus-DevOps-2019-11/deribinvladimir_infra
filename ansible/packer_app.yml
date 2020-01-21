@@ -1,0 +1,30 @@
+---
+- name: Preinstall ruby and bundler packages
+  hosts: all
+  become: true
+  tasks:
+    - name: Install packages
+      apt:
+        pkg:
+          - ruby-full
+          - ruby-bundler
+          - build-essential
+
+    # and now let's install mc, just because I like it!
+    - name: Add universe repository
+      apt_repository:
+        repo: deb [ arch=amd64 ] http://archive.ubuntu.com/ubuntu/ xenial universe
+        state: present
+        update_cache: yes
+
+    - name: Add universe update repository
+      apt_repository:
+        repo: deb [ arch=amd64 ] http://archive.ubuntu.com/ubuntu/ xenial-updates universe
+        state: present
+        update_cache: yes
+
+    - name: Install MC
+      apt:
+        name: mc
+        state: present
+        install_recommends: yes
