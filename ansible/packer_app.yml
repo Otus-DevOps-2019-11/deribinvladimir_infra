@@ -1,0 +1,14 @@
+---
+- name: Preinstall ruby and bundler packages
+  hosts: all
+  become: true
+  tasks:
+    - name: Install packages
+      apt:
+        pkg:
+          - ruby-full
+          - ruby-bundler
+          - build-essential
+
+- name: Import MC playbook # and now let's install mc, just because I like it!
+  import_playbook: tasks/import_mc.yml

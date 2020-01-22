@@ -1,5 +1,17 @@
 # deribinvladimir_infra
 
+### ansible-2
+###### What's been done during this homework:
+- ansible playbooks for app and db with single plays, templates and handlers were created and tested
+- one playbook with few plays to deploy app and db using tags were created and tested
+- a number of different playbooks to prepare and deploy app and db without tags, but with one main playbook were created and tested
+- playbooks for packer provisioning were created and images were recreated and tested with it
+- during all process dynamic inventory was used through bash script with gathering data from terraform output
+###### Additional resources used during this homework:
+- some useful links about ansible modules, which I used to do this homework: [apt_key](https://docs.ansible.com/ansible/latest/modules/apt_key_module.html) - to add fresh key for mongo db repo, [apt](https://docs.ansible.com/ansible/latest/modules/apt_module.html) - to install applications and packages, [apt_repository](https://docs.ansible.com/ansible/latest/modules/apt_repository_module.html) - to add universe repo, [what updates sudo apt-get update](https://ubuntugeeks.com/questions/62/what-does-sudo-apt-get-update-do) - to make clear for myself which options I should choose for apt module, [systemd](https://docs.ansible.com/ansible/latest/modules/systemd_module.html), [loops in playbooks](https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html), [import_playbook](https://docs.ansible.com/ansible/latest/modules/import_playbook_module.html) - to import playbook with midnight commander installer
+- [systemctl cheatsheet](https://denisdubovitskiy.ru/linux/2018/07/13/systemctl-cheatsheet/) - small cheatsheet of systemctl options etc, [systemd logs](https://community.vscale.io/hc/ru/community/posts/115000051869-%D0%9B%D0%BE%D0%B3%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B2-systemd) - to check why my puma service woulnd't start (journalctl -u puma.service),
+[systemd for five minutes](https://habr.com/ru/company/southbridge/blog/255845/)
+
 ### ansible-1
 ###### What's been done during this homework:
 - ansible and dependent and useful tools and programs were installed (python, pip, etc)

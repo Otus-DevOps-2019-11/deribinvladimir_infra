@@ -15,3 +15,7 @@ variable db_disk_image {
   description = "Disk image for reddit db"
   default     = "reddit-db-base"
 }
+
+variable provision_enabled {
+  default = "false"
+}

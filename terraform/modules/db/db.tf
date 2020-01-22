@@ -15,9 +15,14 @@ resource "google_compute_instance" "db" {
   metadata = {
     ssh-keys = "appuser:${file(var.public_key_path)}"
   }
+}
+
+resource "null_resource" "db" {
+  count = var.provision_enabled ? 1 : 0
   connection {
     type        = "ssh"
-    host        = self.network_interface[0].access_config[0].nat_ip
+    host        = google_compute_instance.db.network_interface.0.access_config.0.nat_ip
+    # host        = self.network_interface[0].access_config[0].nat_ip
     user        = "appuser"
     agent       = false
     private_key = file(var.private_key_path)

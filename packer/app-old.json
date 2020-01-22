@@ -18,13 +18,13 @@
         {
             "type": "googlecompute",
             "project_id": "{{ user `project_id` }}",
-            "image_name": "reddit-db-base-{{timestamp}}",
-            "image_family": "reddit-db-base",
+            "image_name": "reddit-app-base-{{timestamp}}",
+            "image_family": "reddit-app-base",
             "source_image_family": "{{ user `source_image_family` }}",
             "zone": "{{ user `zone` }}",
             "disk_size": "{{ user `disk_size` }}",
             "zone": "{{ user `zone` }}",
-            "image_description": "Image for reddit with db",
+            "image_description": "Image for reddit with ruby",
             "zone": "{{ user `zone` }}",
             "ssh_username": "{{ user `ssh_username` }}",
             "machine_type": "{{ user `machine_type` }}",
@@ -34,8 +34,14 @@
     ],
     "provisioners": [
 	{
-	    "type": "ansible",
-	    "playbook_file": "ansible/packer_db.yml"
+	    "type": "shell",
+	    "script": "scripts/install_ruby.sh",
+	    "execute_command": "sudo {{.Path}}"
+	},
+	{
+	    "type": "shell",
+	    "script": "files/deploy_mc.sh",
+	    "execute_command": "sudo {{.Path}}"
 	}
     ]
 }

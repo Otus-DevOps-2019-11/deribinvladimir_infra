@@ -1,7 +1,0 @@
-plugin: gcp_compute
-projects:
-  - infra-262415
-zones:
-  - europe-west3-a
-auth_kind: serviceaccount
-service_account_file: ~/.config/gcloud/infra-a912ac4f7cd5.json
