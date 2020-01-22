@@ -1,4 +1,8 @@
-    # and now let's install mc, just because I like it!
+- name: Install Midnight Commander
+  # just because I like to use it!
+  hosts: all
+  become: true
+  tasks:
     - name: Add universe repository
       apt_repository:
         repo: deb [ arch=amd64 ] http://archive.ubuntu.com/ubuntu/ xenial universe

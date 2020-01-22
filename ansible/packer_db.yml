@@ -37,5 +37,5 @@
     - name: Enable mongod # enable autostart of service
       systemd: name=mongod enabled=yes
 
-    # and now let's install mc, just because I like it!
-    - import_tasks: tasks/import_mc.yml
+- name: Import MC playbook # and now let's install mc, just because I like it!
+  import_playbook: tasks/import_mc.yml
