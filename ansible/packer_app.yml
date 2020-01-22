@@ -11,4 +11,4 @@
           - build-essential
 
     # and now let's install mc, just because I like it!
-    - import_tasks: import_mc.yml
+    - import_tasks: tasks/import_mc.yml
