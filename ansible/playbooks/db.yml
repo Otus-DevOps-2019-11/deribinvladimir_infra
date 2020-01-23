@@ -2,8 +2,8 @@
 - name: Configure MongoDB
   hosts: db
   become: true # <-- run all tasks as root
-  vars:
-    mongo_bind_ip: 0.0.0.0  # <-- variable for our mongod template
+  #vars:
+    #mongo_bind_ip: 0.0.0.0  # <-- variable for our mongod template
 
   roles:
     - db

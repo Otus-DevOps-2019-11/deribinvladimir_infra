@@ -1,0 +1,3 @@
+# db_host: 10.156.0.2
+# now we use internal ip defined in inventory.gcp.yml
+db_host: "{{ hostvars[groups['db'][0]]['ansible_internal_ip'] }}"
