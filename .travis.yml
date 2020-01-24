@@ -24,6 +24,30 @@ script:
 - ansible --version
 - ansible-lint --version
 
+- packer validate -var-file=packer/variables.json packer/db.json
+- packer validate -var-file=packer/variables.json packer/app.json
+
+- tflint terraform/
+- tflint terraform/stage
+- tflint terraform/prod
+
+- ansible-lint ansible/playbooks/*.yml --exclude=roles/jdauphant.nginx
+
+- cd terraform
+- terraform get
+- terraform init
+- terraform validate -var-file terraform.tfvars.example
+
+- cd terraform/stage
+- terraform get
+- terraform init
+- terraform validate
+
+- cd ../prod
+- terraform get
+- terraform init
+- terraform validate
+
 notifications:
   slack:
     rooms:
