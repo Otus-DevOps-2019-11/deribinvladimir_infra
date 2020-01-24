@@ -1,5 +1,9 @@
 # deribinvladimir_infra
 
+### ansible-3
+###### Status of master branch builds:
+[![Build Status](https://travis-ci.com/Otus-DevOps-2019-11/deribinvladimir_infra.svg?branch=master)](https://travis-ci.com/Otus-DevOps-2019-11/deribinvladimir_infra)
+
 ### ansible-2
 ###### What's been done during this homework:
 - ansible playbooks for app and db with single plays, templates and handlers were created and tested
