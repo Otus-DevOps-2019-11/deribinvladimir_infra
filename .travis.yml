@@ -40,10 +40,12 @@ script:
 
 - cd stage
 - terraform get
+- terraform init -backend=false
 - terraform validate
 
 - cd ../prod
 - terraform get
+- terraform init -backend=false
 - terraform validate
 
 notifications:
