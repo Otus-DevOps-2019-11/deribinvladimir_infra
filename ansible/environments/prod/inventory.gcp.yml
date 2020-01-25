@@ -2,9 +2,15 @@ plugin: gcp_compute
 projects:
   - infra-262415
 zones:
-  - europe-west3-a
+  - europe-west3-c
 auth_kind: serviceaccount
 service_account_file: ~/.config/gcloud/infra-a912ac4f7cd5.json
+groups:
+  db: "'reddit-db' in name"
+  app: "'reddit-app' in name"
+  # "'reddit-db' in (tags['items']|list)"
+  # also we can use labels from instances if we will difene them using terraform
+  # look all values an ansible-inventory --list
 hostnames:
   # List host by name instead of the default public ip
   - name
@@ -12,3 +18,4 @@ compose:
   # Set an inventory parameter to use the Public IP address to connect to the host
   # For Private ip use "networkInterfaces[0].networkIP"
   ansible_host: networkInterfaces[0].accessConfigs[0].natIP
+  ansible_internal_ip: networkInterfaces[0].networkIP

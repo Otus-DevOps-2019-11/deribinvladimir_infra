@@ -22,6 +22,7 @@ module "db" {
   private_key_path = var.private_key_path
   zone             = var.zone
   db_disk_image    = var.db_disk_image
+  provision_enabled = false
 }
 
 module "app" {
@@ -31,7 +32,7 @@ module "app" {
   app_disk_image     = var.app_disk_image
   reddit_internal_ip = module.db.db_internal_ip
   #  db_internal_ip    = "10.156.15.193"
-  provision_enabled = true
+  provision_enabled = false
 }
 
 module "vpc" {

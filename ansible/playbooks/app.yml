@@ -1,0 +1,16 @@
+---
+- name: Configure App
+  hosts: app
+  become: true # <-- run all tasks as root
+  #vars:
+    # db_host: 10.156.0.2
+    # now we use internal ip defined in inventory.gcp.yml
+    # db_host: "{{ hostvars[groups['db'][0]]['ansible_internal_ip'] }}"
+  #tasks:
+    #- name: Check internal db ip
+    #  debug:
+    #    var: db_host
+
+  roles:
+    - app
+    - jdauphant.nginx
