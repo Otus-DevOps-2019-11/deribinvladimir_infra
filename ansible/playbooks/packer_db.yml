@@ -2,40 +2,44 @@
 - name: Install MongoDB 4.2
   hosts: all
   become: true
-  tasks:
-    - name: Add apt key for Mongo DB
-      apt_key:
-        url: https://www.mongodb.org/static/pgp/server-4.2.asc
-        state: present
 
-    - name: Install gnupg package
-      apt:
-        name: gnupg
+  roles:
+    - db
 
-    - name: Add apt key for Mongo DB again
-      apt_key:
-        url: https://www.mongodb.org/static/pgp/server-4.2.asc
-        state: present
+#  tasks:
+#    - name: Add apt key for Mongo DB
+#      apt_key:
+#        url: https://www.mongodb.org/static/pgp/server-4.2.asc
+#        state: present
 
-    - name: Add mongo repository
-      apt_repository:
-        repo: deb [ arch=amd64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.2 multiverse
-        state: present
+#    - name: Install gnupg package
+#      apt:
+#        name: gnupg
 
-    - name: Update repositories cache
-      apt:
-        update_cache: yes
+#    - name: Add apt key for Mongo DB again
+#      apt_key:
+#        url: https://www.mongodb.org/static/pgp/server-4.2.asc
+#        state: present
 
-    - name: Install Mongo Db 4.2.2
-      apt:
-        name: mongodb-org=4.2.2
-        state: present
+#    - name: Add mongo repository
+#      apt_repository:
+#        repo: deb [ arch=amd64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.2 multiverse
+#        state: present
 
-    - name: Start mongod  # not necessary, but let it be
-      systemd: name=mongod state=started
+#    - name: Update repositories cache
+#      apt:
+#        update_cache: yes
 
-    - name: Enable mongod # enable autostart of service
-      systemd: name=mongod enabled=yes
+#    - name: Install Mongo Db 4.2.2
+#      apt:
+#        name: mongodb-org=4.2.2
+#        state: present
 
-- name: Import MC playbook # and now let's install mc, just because I like it!
-  import_playbook: import_mc.yml
+#    - name: Start mongod  # not necessary, but let it be
+#      systemd: name=mongod state=started
+
+#    - name: Enable mongod # enable autostart of service
+#      systemd: name=mongod enabled=yes
+
+#- name: Import MC playbook # and now let's install mc, just because I like it!
+#  import_playbook: import_mc.yml

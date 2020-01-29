@@ -14,3 +14,7 @@ jdauphant.nginx
 .molecule
 .cache
 .pytest_cache
+venv
+ansible/roles/db/molecule
+.yamllint
+Pipfile
