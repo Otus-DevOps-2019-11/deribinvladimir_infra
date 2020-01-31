@@ -1,29 +1,27 @@
----
 language: python
-python: "2.7"
-
-# Use the new container infrastructure
-sudo: false
-
-# Install ansible
-addons:
-  apt:
-    packages:
-    - python-pip
-
+python:
+- '3.7'
 install:
-  # Install ansible
-  - pip install ansible
-
-  # Check ansible version
-  - ansible --version
-
-  # Create ansible.cfg with correct roles_path
-  - printf '[defaults]\nroles_path=../' >ansible.cfg
-
+- pip install ansible==2.9.4 molecule apache-libcloud python-vagrant
+env:
+  matrix:
+  - GCE_CREDENTIALS_FILE="$(pwd)/ansible4test.json"
+  global:
+  - secure: DFjUEjryFbTOGMoMJRIk8CzT31bMNu0CwgAO+HCozzHWQGdD2/L3YChY646EcN0Jp50KAVpg8otjlNvhAtoW3Us93rp7j2oEKUEqANttFBN2J5xxN/8uMCqF414V7Z/womV8plCwJHMmPn8urlV2NocJGRfdHnrjGyTVCx5Usb6/OgWePCQ7gLVzMjrq5Z2lFQ2euQ0rhYBLfh2UTLCmXqxl1yUsh9Dqyx32PNW1oBVruNM6ZibPE0Ph0CdBa4HM+yHH9rC72Myt5qfjWf/daiSPn3t+jINswT8lFVY/kglKNpgthHWLnPTwsMZHX3jrUp8o2skHfhTN3z95tK+Z611P2I6qtnOmLr3g14PV7hiV58dPU2uoeUKHVw2s0xjkbLLK7cPL/IKk6HZITgG1gvO9vXFMvhwmK3SNCtIbweEAVAGjNE79rVZV/yiRJPGeuUytxmJYc+WbGgt7WSdip/aNbIiQeWvTM4OoWGoFTzeTnDAlMzbSn6yrf6vltdQNw37tWkpDE771iGV57SeHUdUWJpXfp3Q32Avf+kP1+S/AtdJ6YatPEZAtrvWAEmfX65SlX2iYoofVpvH0qB9QeUiKh9dUXflkcjG/1X0wGXSzOSlDHNc62YhuNvDwnM2D0HzXO6+b5GGRXrb2ShlKrIlCbfwrl9K5GQfqninU0t4=
+  - secure: mKlFARBlEGBvuWbTdHJ+fpn9/boM+JQjLG7YU9/rTfNDIx+msuyiWOpyHDmIYIZu0JMDrk1ezXwx213RtQUyyhkhbDboUDxA2uu29IdXmYZiuRvlSTtazOY/rO/2JmESN83x5B9ddk0ZzgkgnSCoP36zvKsEVIEaU2zkMXHTjASDvRYQ8zFSnIts5V+ob24MdggTrmjag+wTQCgPXwGnwzp7Yd82QFC18mXVpWg/tgV6YwIXhsuJ5Er1ZcKzzT/Ax/tPmQxit3ICyC3Lq6Wi7vEG8EHvV/lnRXPiKno2ajOxNH5XaW1wjwG/lGJdqmm1v5NNQLDU1r0e9OBkdnUYw1egWHaS7lZs64PH7ZKs9No4naa40+myEjU9XAJjAt92mhJG1AerN9rwchPZHV1HG87ZXM4CxTZRrKuk+GSPgV67Oa96m3lSzYikr3q6PSrKqjs/sq5o3AyW1RxLvGgN1Yz/gvLEZsMC/krFjTb73UYWqyNy1lHxNEgd8WfXcACKQBDAheXIMPoXergH2//MVojRntuJITVXswFN8wZL7XMiGdypp1/7rnLpUp+QLq7pPQz1pUlXoHJ92yixZZc2fX2UBBvpUv6vAHr/bIj/p2ZYfD4/RvmrFOhupIGDvaEpz5UjKE3GNjaZ9r0+y+ARCqvfmnZzPvfx3eGXje51t40=
+  - secure: eQ0H/jeS9T0AXVHkiMD5RghBPGDneUhP54LRUnRDWbF4gaCQy3ThAliaTvcHDiYQh7SSZDjqpRSeNPls1oZOGyrgJMG3eNClyvZYzTsO37oaim5DZDRVYRVifxMBUcqFKcJfIbjtyqICAc+qcgCMiyHLB0Z61wzIVKuPJa1eG1Xm5kIRiVLQskaIC7zoOg+GVgJNqBRRTjXmU4SaTmtLr8VywXLXK+C/wAtLa52cicaEzb2vA2bgMJlEMFz9gHtSu8kr2AaVPCnW2mhCDoUH18HD1kttfBkaaQUvfZ4iR+TInxI3vZ9+DltlRmIYZGfHOcCBOYaXTPOgxcReuBksLJoSPkgHepbSpOeb7kAk9p5Aix/Tde8Hatrp9Bsq/EbZ+sK6CqD2urrvDTKHTYMQFS1YYI7QZDjvIlTh60yrYYUyBCfmSU0gmXrLxVcTH5mFI5w0ZXkAeB9TNTARtHQQuJkK2HacPsz7+hStYB/DBfF3xdYQnAJ/IVJhj4V2sy81aL2mXIBNVBN//yBy5eukGRIGLbnMxYEM4JxqRw/7eceLWWt4++KUl3d9ujLWHGT5/OK69+Us+2ffJOTMlcqvkGFe2iwC7S6dhHglKjjCRXEeHb9rUznGX0/hTwrMDZ6wWb0ZxMdu0g0QfF43/ArYEVKr2k3yhqQoSWvIeoJYmm0=
 script:
-  # Basic role syntax check
-  - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
-
+- molecule create
+- molecule converge
+- molecule verify
+after_script:
+- molecule destroy
+before_install:
+- openssl aes-256-cbc -K $encrypted_e999656d2e15_key -iv $encrypted_e999656d2e15_iv
+  -in secrets.tar.enc -out secrets.tar -d
+- tar xvf secrets.tar
+- mv google_compute_engine /home/travis/.ssh/
+- chmod 0600 /home/travis/.ssh/google_compute_engine
 notifications:
-  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  slack:
+    secure: QpEllyvTQM0Om5+W41YcjmOOuvf/rrjlzEtzZgFcnHQ6tJMPhxs/ZeckvFRP65aTZ2jGucw0ItZfvAAv87A8PKboMAOd4lcsJAewlN7eT7gRcqJKW6vB6gpuX/peiViytxADqADSD1tb67svq+KomywR5eEk9ELuEYbrkJt5eeaoNJMVf/u4jra9PDKYAIJF/wllT4kuNHZV5Fhr8azp5M3sRqN1LJlyBxD/wwRT6ZB+jSmR+D7Bz2kwlvI8qEA9onUv0DYUbqr1yPjY+HWxC1WmNJSWIlxVoI7aj7mTYTgHCEXj+s1tVC/FHc2ZHZ6PtpVhG0XpTAuEBSG7dfPpkszQk2yBlNW/V7JEaYbFd4hpcAopVvfid5uha2X1C1wyN1RY6c3V0aqDBIG6JcMtbc16WMaaCOr4ae9qPxzMCvQ0TvZSezXPj4vJRJj6mODRnXDMVaS2Gcpz/of0eaTVgPFRVqrU0Dn3KzZTSKsQ86Ny01NN/Hg5UDtZBWbi/100ateINNGSzETTDpYjLYN9/9SfTcW1RK+UJtfZmnL7x9+F4Utis+pftvbFRqFB1ON3l8H616hIBfdUDJaucG7XMOZ1ZFFkdTYJMLSOE4P/TZdf2SZ1zQQLFMkods6qGUITZxpZS9lDuadJwvG/cwrr+gxvA3n3FIH6/QGqMcXmtvc=
