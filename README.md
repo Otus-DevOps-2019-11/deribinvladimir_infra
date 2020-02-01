@@ -2,6 +2,30 @@
 
 # deribinvladimir_infra
 
+### ansible-4
+###### What's been done during this homework:
+- virtualbox and vagrant were installed on local machine, Vagrantfile created and checked creations of virtual instances
+- ansible provision was added to Vagrantfile to provision roles to virtual instances
+- ansible roles and templates were updated to make full provisioning of our virtual instances
+- vagrant config was updated to fix nginx redirection
+- molecule, testinfra, python-vagrant and virtualenv were installed to local machine for testing purposes
+- scenario, test and vm config were created for molecule to test db role
+- playbook for tests was updated, vm was created and provisioned by molecule and tests were passed
+- another test was added and tested to check that db listens on 27017 port
+- packer playbocks were migrated and tested to use roles app and db
+- db role was moved to separate repo and added through requirements.yml
+- .travis.yml was set up to test external db role using gce
+- badge with build status was added to readme.md and notification to slack channel was added about changes in external db role repo and about travis-ci build results 
+###### Additional resources used during this homework:
+- some useful information about pip installation and troubles: [installing pip](https://pip.pypa.io/en/stable/installing/), [bad interpreter error](https://askdev.ru/q/ustanovka-pip-usr-local-opt-python-bin-python2-7-plohoy-interpretator-net-takogo-fayla-ili-kataloga-42613/), [no module named pip error](https://stackoverflow.com/questions/33023599/usr-local-bin-python-no-module-named-pip), [why install pip to local bin](https://unix.stackexchange.com/questions/240037/why-did-pip-install-a-package-into-local-bin)
+- virtualbox download and isntallation: [download](https://www.virtualbox.org/wiki/Downloads), [download version 6.0, because vagrant does not support latest 6.1](https://www.virtualbox.org/wiki/Download_Old_Builds_6_0), [download and install for linux](https://www.virtualbox.org/wiki/Linux_Downloads)
+- vagrant: [download] (https://www.vagrantup.com/downloads.html), [provisioning](https://www.vagrantup.com/docs/provisioning/)
+- nested virtualization - how to run virtualbox under ubuntu installed into hyper-v: [1](https://docs.microsoft.com/ru-ru/virtualization/hyper-v-on-windows/user-guide/nested-virtualization), [2](https://www.nakivo.com/blog/hyper-v-nested-virtualization-explained/)
+- [how to use virtualens](https://docs.python-guide.org/dev/virtualenvs/)
+- how to tell packer to use ansible roles: [ask google "how to tell packer ansible roles"](https://www.google.com/search?q=how+to+tell+packer+ansible+roles) --> [packer, ansible and docker. part 2: using roles](https://blog.james-carr.org/packer-ansible-and-docker-part-2-using-roles-363cbf5dcc7d)
+- [how to install roles using ansible-galaxy](https://galaxy.ansible.com/docs/using/installing.html)
+- travis ci: [how to connect repository to travis](https://docs.travis-ci.com/user/tutorial/), [repository not known issue](https://github.com/travis-ci/travis-ci/issues/10137)
+
 ### ansible-3
 ###### What's been done during this homework:
 - tasks for app and db were converted to roles using ansible-galaxy
