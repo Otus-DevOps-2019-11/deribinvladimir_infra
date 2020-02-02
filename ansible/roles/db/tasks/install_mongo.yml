@@ -1,0 +1,41 @@
+- name: Add apt key for Mongo DB
+  apt_key:
+    url: https://www.mongodb.org/static/pgp/server-4.2.asc
+    state: present
+  tags: install
+
+- name: Install gnupg package
+  apt:
+    name: gnupg
+  tags: install
+
+- name: Add apt key for Mongo DB again
+  apt_key:
+    url: https://www.mongodb.org/static/pgp/server-4.2.asc
+    state: present
+  tags: install
+
+- name: Add mongo repository
+  apt_repository:
+    repo: deb [ arch=amd64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.2 multiverse
+    state: present
+  tags: install
+
+- name: Update repositories cache
+  apt:
+    update_cache: yes
+  tags: install
+
+- name: Install Mongo Db 4.2.2
+  apt:
+    name: mongodb-org=4.2.2
+    state: present
+  tags: install
+
+- name: Start mongod  # not necessary, but let it be
+  systemd: name=mongod state=started
+  tags: install
+
+- name: Enable mongod # enable autostart of service
+  systemd: name=mongod enabled=yes
+  tags: install
